@@ -12,10 +12,13 @@ export const router = Router();
 
 const upload = multer({
   storage: multer.diskStorage({
-    destination(req, res, callback) {
+    destination(req, file, callback) {
       callback(null, path.resolve(__dirname, '..', 'uploads'));
-    }
-  })
+    },
+    filename(req, file, callback) {
+      callback(null, `${Date.now()}-${file.originalname}`);
+    },
+  }),
 });
 
 // List categories
