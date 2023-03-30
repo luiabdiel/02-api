@@ -1,4 +1,4 @@
-import {model, Schema} from 'mongoose';
+import { model, Schema } from 'mongoose';
 
 export const Order = model('Order', new Schema({
   table: {
@@ -8,11 +8,11 @@ export const Order = model('Order', new Schema({
   status: {
     type: String,
     enum: ['WAITING', 'IN_PRODUCTION', 'DONE'],
-    default: 'WAITING'
+    default: 'WAITING',
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
   products: {
     required: true,
@@ -21,9 +21,7 @@ export const Order = model('Order', new Schema({
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'Product',
-      },
-      quantity: Number,
-      default: 1,
+      }
     }],
   },
 }));
