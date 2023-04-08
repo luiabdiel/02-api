@@ -6,13 +6,13 @@ import { Server } from 'socket.io';
 
 import { router } from './router';
 
+const app = express();
+const server = http.createServer(app);
+export const io = new Server(server);
+
 mongoose.connect('mongodb://localhost:27017')
   .then(() => {
     const port = 3001;
-
-    const app = express();
-    const server = http.createServer(app);
-    const io = new Server(server);
 
     app.use((req, res, next) => {
       res.setHeader('Access-Control-Allow-Origin', '*');
